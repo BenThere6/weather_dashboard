@@ -32,7 +32,7 @@ var day_five_wind = document.getElementById('day_five_wind');
 var day_five_humidity = document.getElementById('day_five_humidity');
 
 var cityName = 'New York'; 
-const apiKey = os.environ.get("WEATHER_API_KEY");
+const apiKey = process.env.get("WEATHER_API_KEY");
 const coordsApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
 // Fetch coordinates first
