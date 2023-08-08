@@ -9,59 +9,63 @@
 </head>
 <body>
     <header><h1>Weather Dashboard</h1></header>
-    <aside>
-        <form id="user_search_form">
-            <label><h2>Search for a City:</h2></label>
-            <input type="text" id="city_search" placeholder="San Diego">
-            <input type="submit" value="Search">
-        </form>
-        <section id="recent_searches"></section>
-    </aside>
-    <section>
-        <div id="todays_weather_box">
-            <h2><span id=city></span> <span id="today_date"></span><span id="today_icon"></span></h2>
-            <div id="today_temp"></div>
-            <div id="today_wind"></div>
-            <div id="today_humidity"></div>
-        </div>
-        <div id="five_day_box">
-            <h3>5-Day Forecast:</h3>
-            <div class="five_day_cards">
-                <div id="day_one_date"></div>
-                <div id="day_one_icon"></div>
-                <div id="day_one_temp"></div>
-                <div id="day_one_wind"></div>
-                <div id="day_one_humidity"></div>
+    <section id="screen_container">
+        <aside id="aside">
+            <form id="user_search_form">
+                <label><h2>Search for a City:</h2></label>
+                <input type="text" id="city_search" class='width-100' placeholder="San Diego" autocomplete="off"><br><br>
+                <input type="submit" id='submit_btn' class='width-100' value="Search">
+            </form>
+            <section id="recent_searches"></section>
+        </aside>
+        <section id="main">
+            <div id="todays_weather_box">
+                <h2><span id=city>test</span> <span id="today_date">test</span> <span id="today_icon">test</span></h2>
+                <div id="today_temp">test</div>
+                <div id="today_wind">test</div>
+                <div id="today_humidity">test</div>
             </div>
-            <div class="five_day_cards">
-                <div id="day_two_date"></div>
-                <div id="day_two_icon"></div>
-                <div id="day_two_temp"></div>
-                <div id="day_two_wind"></div>
-                <div id="day_two_humidity"></div>
+            <div id="five_day_box">
+                <h3>5-Day Forecast:</h3>
+                <div id="card_container">
+                    <div class="five_day_cards">
+                        <div id="day_one_date" class="bold">test</div>
+                        <div id="day_one_icon">test</div>
+                        <div id="day_one_temp">test</div>
+                        <div id="day_one_wind">test</div>
+                        <div id="day_one_humidity">test</div>
+                    </div>
+                    <div class="five_day_cards">
+                        <div id="day_two_date" class="bold">test</div>
+                        <div id="day_two_icon">test</div>
+                        <div id="day_two_temp">test</div>
+                        <div id="day_two_wind">test</div>
+                        <div id="day_two_humidity">test</div>
+                    </div>
+                    <div class="five_day_cards">
+                        <div id="day_three_date" class="bold">test</div>
+                        <div id="day_three_icon">test</div>
+                        <div id="day_three_temp">test</div>
+                        <div id="day_three_wind">test</div>
+                        <div id="day_three_humidity">test</div>
+                    </div>
+                    <div class="five_day_cards">
+                        <div id="day_four_date" class="bold">test</div>
+                        <div id="day_four_icon">test</div>
+                        <div id="day_four_temp">test</div>
+                        <div id="day_four_wind">test</div>
+                        <div id="day_four_humidity">test</div>
+                    </div>
+                    <div class="five_day_cards">
+                        <div id="day_five_date" class="bold">test</div>
+                        <div id="day_five_icon">test</div>
+                        <div id="day_five_temp">test</div>
+                        <div id="day_five_wind">test</div>
+                        <div id="day_five_humidity">test</div>
+                    </div>
+                </div>
             </div>
-            <div class="five_day_cards">
-                <div id="day_three_date"></div>
-                <div id="day_three_icon"></div>
-                <div id="day_three_temp"></div>
-                <div id="day_three_wind"></div>
-                <div id="day_three_humidity"></div>
-            </div>
-            <div class="five_day_cards">
-                <div id="day_four_date"></div>
-                <div id="day_four_icon"></div>
-                <div id="day_four_temp"></div>
-                <div id="day_four_wind"></div>
-                <div id="day_four_humidity"></div>
-            </div>
-            <div class="five_day_cards">
-                <div id="day_five_date"></div>
-                <div id="day_five_icon"></div>
-                <div id="day_five_temp"></div>
-                <div id="day_five_wind"></div>
-                <div id="day_five_humidity"></div>
-            </div>
-        </div>
+        </section>
     </section>
 </body>
 <script src="./assets/script.js"></script>
