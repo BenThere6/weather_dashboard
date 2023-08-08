@@ -1,0 +1,68 @@
+/* :root {
+
+} */
+
+header {
+    background-color: rgb(54,54,134);
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+#user_search_form {
+    border-bottom: lightgray 2px solid;
+    padding-bottom: 10px;
+}
+
+#submit_btn {
+    background-color: rgb(113,144,221);
+    color: white;
+}
+
+#todays_weather_box {
+    border: 1px black solid;
+    padding: 10px;
+}
+
+#card_container {
+    display:flex;
+    justify-content: space-between;
+}
+
+.five_day_cards {
+    color: white;
+    background-color: rgb(52, 61, 77);
+    flex: 1;
+    margin-right: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.five_day_cards:last-child {
+    margin-right: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#screen_container {
+    display:flex;
+    padding: 20px;
+}
+
+#aside {
+    flex: 0 0 20%;
+    padding-right: 25px;
+}
+
+#main {
+    flex: 1;
+}
+
+.width-100 {
+    width:100%;
+    box-sizing: border-box;
+    font-size: medium;
+    height: 35px;
+}
