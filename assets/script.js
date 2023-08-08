@@ -31,29 +31,31 @@ var day_five_temp = document.getElementById('day_five_temp');
 var day_five_wind = document.getElementById('day_five_wind');
 var day_five_humidity = document.getElementById('day_five_humidity');
 
-var cityName = 'New York';
 const user_search_form = document.getElementById('user_search_form');
 const apiKey = '4631f6bc4da95898d19c50c6d5491e03';
 
 user_search_form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var cityName = city_search.value;
+    genWeatherInfo();
+});
+
+function genWeatherInfo() {
+    const cityName = city_search.value;
 
     const coordsApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
     fetch(coordsApiUrl)
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
-            iconCode = data.weather[0].icon;
-            iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
-            tempKelvin = data.main.temp;
-            temp = ((tempKelvin - 273.15) * 9/5 + 32).toFixed(1);
-            wind = data.wind.speed;
-            humidity = data.main.humidity;
+            const iconCode = data.weather[0].icon;
+            const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
+            const tempKelvin = data.main.temp;
+            const temp = ((tempKelvin - 273.15) * 9/5 + 32).toFixed(1);
+            const wind = data.wind.speed;
+            const humidity = data.main.humidity;
 
             city.textContent = cityName;
-            today = dayjs().format('M/D/YYYY');
+            const today = dayjs().format('M/D/YYYY');
             today_date.textContent = today;
             today_icon.src = iconUrl;
             today_temp.textContent = temp + '\u00B0F';
@@ -65,20 +67,19 @@ user_search_form.addEventListener('submit', function(e) {
         });
 
     const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
-    
-    var iconUrlArray = [];
-    var tempArray = [];
-    var windArray = [];
-    var humidityArray = [];
 
     fetch(forecastApiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log(data.list);
-            for (i=0;i<data.list.length;i+=8) {
-                const forecast = data.list[i];
+            const forecastList = data.list;
+            const iconUrlArray = [];
+            const tempArray = [];
+            const windArray = [];
+            const humidityArray = [];
 
-                // Access data points from the forecast entry
+            for (let i = 7; i < forecastList.length; i += 8) {
+                const forecast = forecastList[i];
+
                 const iconCode = forecast.weather[0].icon;
                 const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
                 const tempKelvin = forecast.main.temp;
@@ -86,38 +87,44 @@ user_search_form.addEventListener('submit', function(e) {
                 const wind = forecast.wind.speed;
                 const humidity = forecast.main.humidity;
 
-                // Push values to respective arrays
                 iconUrlArray.push(iconUrl);
                 tempArray.push(temp);
                 windArray.push(wind);
                 humidityArray.push(humidity);
             }
+
             day_one_icon.src = iconUrlArray[0];
             day_two_icon.src = iconUrlArray[1];
             day_three_icon.src = iconUrlArray[2];
             day_four_icon.src = iconUrlArray[3];
             day_five_icon.src = iconUrlArray[4];
 
-            day_one_temp.textContent = tempArray[0] + '\u00B0F';
-            day_two_temp.textContent = tempArray[1] + '\u00B0F';
-            day_three_temp.textContent = tempArray[2] + '\u00B0F';
-            day_four_temp.textContent = tempArray[3] + '\u00B0F';
-            day_five_temp.textContent = tempArray[4] + '\u00B0F';
+            day_one_date.textContent = dayjs().add(1, 'day').format('M/D/YYYY');
+            day_two_date.textContent = dayjs().add(2, 'day').format('M/D/YYYY');
+            day_three_date.textContent = dayjs().add(3, 'day').format('M/D/YYYY');
+            day_four_date.textContent = dayjs().add(4, 'day').format('M/D/YYYY');
+            day_five_date.textContent = dayjs().add(5, 'day').format('M/D/YYYY');
 
-            day_one_wind.textContent = windArray[0] + ' MPH';
-            day_two_wind.textContent = windArray[1] + ' MPH';
-            day_three_wind.textContent = windArray[2] + ' MPH';
-            day_four_wind.textContent = windArray[3] + ' MPH';
-            day_five_wind.textContent = windArray[4] + ' MPH';
+            day_one_temp.textContent = 'Temp: ' + tempArray[0] + '\u00B0F';
+            day_two_temp.textContent = 'Temp: ' + tempArray[1] + '\u00B0F';
+            day_three_temp.textContent = 'Temp: ' + tempArray[2] + '\u00B0F';
+            day_four_temp.textContent = 'Temp: ' + tempArray[3] + '\u00B0F';
+            day_five_temp.textContent = 'Temp: ' + tempArray[4] + '\u00B0F';
 
-            day_one_humidity.textContent = humidityArray[0] + '%';
-            day_two_humidity.textContent = humidityArray[1] + '%';
-            day_three_humidity.textContent = humidityArray[2] + '%';
-            day_four_humidity.textContent = humidityArray[3] + '%';
-            day_five_humidity.textContent = humidityArray[4] + '%';
+            day_one_wind.textContent = 'Wind: ' + windArray[0] + ' MPH';
+            day_two_wind.textContent = 'Wind: ' + windArray[1] + ' MPH';
+            day_three_wind.textContent = 'Wind: ' + windArray[2] + ' MPH';
+            day_four_wind.textContent = 'Wind: ' + windArray[3] + ' MPH';
+            day_five_wind.textContent = 'Wind: ' + windArray[4] + ' MPH';
+
+            day_one_humidity.textContent = 'Humidity: ' + humidityArray[0] + '%';
+            day_two_humidity.textContent = 'Humidity: ' + humidityArray[1] + '%';
+            day_three_humidity.textContent = 'Humidity: ' + humidityArray[2] + '%';
+            day_four_humidity.textContent = 'Humidity: ' + humidityArray[3] + '%';
+            day_five_humidity.textContent = 'Humidity: ' + humidityArray[4] + '%';
         })
         .catch(error => {
             console.error('Error:', error);
         });
     city_search.value = '';
-});
+}
