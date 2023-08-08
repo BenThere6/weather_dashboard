@@ -31,27 +31,32 @@ var day_five_temp = document.getElementById('day_five_temp');
 var day_five_wind = document.getElementById('day_five_wind');
 var day_five_humidity = document.getElementById('day_five_humidity');
 
-var cityName = 'New York'; 
+var user_search_form = document.getElementById('user_search_form');
+var city_search = document.getElementById('city_search');
+var cityName;
+
+user_search_form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    cityName = city_search.value;
+    city_search.value = '';
+})
+
 const apiKey = '4631f6bc4da95898d19c50c6d5491e03';
 const coordsApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
-// Fetch coordinates first
 fetch(coordsApiUrl)
     .then(response => response.json())
     .then(data => {
-        // Extract latitude and longitude from the response
         const latitude = data.coord.lat;
         const longitude = data.coord.lon;
 
-        // Construct the weather API URL using the extracted coordinates
         const weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
         
-        // Fetch weather data using the constructed URL
         return fetch(weatherApiUrl);
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); // Handle the retrieved weather data here
+        console.log(data);
     })
     .catch(error => {
         console.error('Error:', error);
