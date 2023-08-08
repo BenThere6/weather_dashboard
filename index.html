@@ -13,14 +13,14 @@
         <aside id="aside">
             <form id="user_search_form">
                 <label><h2>Search for a City:</h2></label>
-                <input type="text" id="city_search" class='width-100' placeholder="San Diego" autocomplete="off"><br><br>
+                <input type="text" id="city_search" class='width-100' placeholder="San Diego" value='San Diego' autocomplete="off"><br><br>
                 <input type="submit" id='submit_btn' class='width-100' value="Search">
             </form>
             <section id="recent_searches"></section>
         </aside>
         <section id="main">
             <div id="todays_weather_box">
-                <h2><span id=city>test</span> <span id="today_date">test</span> <span id="today_icon">test</span></h2>
+                <h2><span id=city>test</span> <span id="today_date">test</span> <span></span><img id="today_icon" alt="Weather Icon"></h2>
                 <div id="today_temp">test</div>
                 <div id="today_wind">test</div>
                 <div id="today_humidity">test</div>
@@ -30,35 +30,35 @@
                 <div id="card_container">
                     <div class="five_day_cards">
                         <div id="day_one_date" class="bold">test</div>
-                        <div id="day_one_icon">test</div>
+                        <img id="day_one_icon" alt="Weather Icon">
                         <div id="day_one_temp">test</div>
                         <div id="day_one_wind">test</div>
                         <div id="day_one_humidity">test</div>
                     </div>
                     <div class="five_day_cards">
                         <div id="day_two_date" class="bold">test</div>
-                        <div id="day_two_icon">test</div>
+                        <img id="day_two_icon" alt="Weather Icon">
                         <div id="day_two_temp">test</div>
                         <div id="day_two_wind">test</div>
                         <div id="day_two_humidity">test</div>
                     </div>
                     <div class="five_day_cards">
                         <div id="day_three_date" class="bold">test</div>
-                        <div id="day_three_icon">test</div>
+                        <img id="day_three_icon" alt="Weather Icon">
                         <div id="day_three_temp">test</div>
                         <div id="day_three_wind">test</div>
                         <div id="day_three_humidity">test</div>
                     </div>
                     <div class="five_day_cards">
                         <div id="day_four_date" class="bold">test</div>
-                        <div id="day_four_icon">test</div>
+                        <img id="day_four_icon" alt="Weather Icon">
                         <div id="day_four_temp">test</div>
                         <div id="day_four_wind">test</div>
                         <div id="day_four_humidity">test</div>
                     </div>
                     <div class="five_day_cards">
                         <div id="day_five_date" class="bold">test</div>
-                        <div id="day_five_icon">test</div>
+                        <img id="day_five_icon" alt="Weather Icon">
                         <div id="day_five_temp">test</div>
                         <div id="day_five_wind">test</div>
                         <div id="day_five_humidity">test</div>
@@ -68,5 +68,6 @@
         </section>
     </section>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
 <script src="./assets/script.js"></script>
 </html>
