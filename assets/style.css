@@ -24,6 +24,10 @@ header {
     padding: 10px;
 }
 
+#today_icon {
+    vertical-align: middle;
+}
+
 #card_container {
     display:flex;
     justify-content: space-between;
@@ -51,11 +55,6 @@ header {
     padding: 20px;
 }
 
-#aside {
-    flex: 0 0 20%;
-    padding-right: 25px;
-}
-
 #main {
     flex: 1;
 }
@@ -65,4 +64,16 @@ header {
     box-sizing: border-box;
     font-size: medium;
     height: 35px;
+    margin-top:10px;
 }
+
+#aside {
+    flex: 0 0 20%;
+    padding-right: 25px;
+}
+
+/* @media screen and (min-width: 768px) {
+    #aside {
+        flex: 0 0 100%;
+    }
+} */

@@ -31,21 +31,61 @@ var day_five_temp = document.getElementById('day_five_temp');
 var day_five_wind = document.getElementById('day_five_wind');
 var day_five_humidity = document.getElementById('day_five_humidity');
 
+var mainEl = document.getElementById('main');
+
 const user_search_form = document.getElementById('user_search_form');
 const apiKey = '4631f6bc4da95898d19c50c6d5491e03';
+var success = false;
 
 user_search_form.addEventListener('submit', function(e) {
     e.preventDefault();
+    const cityName = city_search.value;
     genWeatherInfo();
 });
 
+const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+
+function updateRecentSearches() {
+    const recentSearchesContainer = document.getElementById('recent_searches');
+    recentSearchesContainer.innerHTML = '';
+
+    recentSearches.forEach(city => {
+        const cityButton = document.createElement('button');
+        cityButton.classList.add('width-100');
+        cityButton.textContent = city;
+        cityButton.addEventListener('click', () => {
+            city_search.value = city;
+            genWeatherInfo();
+        });
+        recentSearchesContainer.appendChild(cityButton);
+    });
+}
+
+updateRecentSearches();
+
+function addToRecentSearches(city) {
+    if (!recentSearches.includes(city)) {
+        recentSearches.push(city);
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+        updateRecentSearches();
+    }
+}
+
 function genWeatherInfo() {
+    success = false;
     const cityName = city_search.value;
 
     const coordsApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
     fetch(coordsApiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                success = true;
+                return response.json();
+            } else {
+                throw new Error('API request failed');
+            }
+        })
         .then(data => {
             const iconCode = data.weather[0].icon;
             const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
@@ -58,9 +98,12 @@ function genWeatherInfo() {
             const today = dayjs().format('M/D/YYYY');
             today_date.textContent = today;
             today_icon.src = iconUrl;
-            today_temp.textContent = temp + '\u00B0F';
-            today_wind.textContent = wind + ' MPH';
-            today_humidity.textContent = humidity + '%';
+            today_temp.textContent = 'Temp: ' + temp + '\u00B0F';
+            today_wind.textContent = 'Wind: ' + wind + ' MPH';
+            today_humidity.textContent = 'Humidity: ' + humidity + '%';
+
+            addToRecentSearches(cityName);
+            main.style.display = 'block'
         })
         .catch(error => {
             console.error('Error:', error);
@@ -69,7 +112,14 @@ function genWeatherInfo() {
     const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
 
     fetch(forecastApiUrl)
-        .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            success = true;
+            return response.json();
+        } else {
+            throw new Error('API request failed');
+        }
+    })
         .then(data => {
             const forecastList = data.list;
             const iconUrlArray = [];
@@ -128,3 +178,9 @@ function genWeatherInfo() {
         });
     city_search.value = '';
 }
+
+function init() {
+    main.style.display = 'none';
+};
+
+init();
