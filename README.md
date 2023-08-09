@@ -2,7 +2,13 @@
 
 ## Description 
 
+This dashboard presents the current weather and a five-day forecast for whatever city the user searches. Data presented includes weather icon, temperature, wind speed, and humidity. The Open Weather Map API was used to display this information. 
+
 ## Usage
+
+https://benthere6.github.io/weather_dashboard/
+
+![Screenshot](./assets/images/screenshot.png)
 
 ## Acceptance Criteria
 
