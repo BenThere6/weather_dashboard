@@ -9,6 +9,14 @@ header {
     text-align: center;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Lato', sans-serif;
+}
+
 #user_search_form {
     border-bottom: lightgray 2px solid;
     padding-bottom: 10px;
@@ -31,6 +39,12 @@ header {
 #card_container {
     display:flex;
     justify-content: space-between;
+    overflow-x:scroll;
+}
+
+.icon {
+    max-height:60px;
+    max-width:60px;
 }
 
 .five_day_cards {
@@ -40,6 +54,11 @@ header {
     margin-right: 20px;
     padding: 10px;
     box-sizing: border-box;
+    min-width: 150px;
+    height: 250px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .five_day_cards:last-child {
@@ -55,10 +74,6 @@ header {
     padding: 20px;
 }
 
-#main {
-    flex: 1;
-}
-
 .width-100 {
     width:100%;
     box-sizing: border-box;
@@ -67,13 +82,29 @@ header {
     margin-top:10px;
 }
 
+#main {
+    flex: 1;
+    overflow-x:scroll;
+}
+
 #aside {
     flex: 0 0 20%;
     padding-right: 25px;
 }
 
-/* @media screen and (min-width: 768px) {
-    #aside {
-        flex: 0 0 100%;
+@media screen and (max-width: 1024px) {
+    #screen_container {
+        display: flex;
+        flex-direction: column-reverse;
+
     }
-} */
+
+    #main {
+        margin-top:20px;
+        order: 0;
+    }
+
+    #aside {
+        padding-right: 0;
+    }
+}
