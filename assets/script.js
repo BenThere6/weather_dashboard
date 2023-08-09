@@ -51,7 +51,7 @@ function updateRecentSearches() {
 
     recentSearches.forEach(city => {
         const cityButton = document.createElement('button');
-        cityButton.classList.add('width-100');
+        cityButton.classList.add('bar-style');
         cityButton.textContent = city;
         cityButton.addEventListener('click', () => {
             city_search.value = city;
