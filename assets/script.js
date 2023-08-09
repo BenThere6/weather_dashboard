@@ -39,10 +39,10 @@ var success = false;
 
 user_search_form.addEventListener('submit', function(e) {
     e.preventDefault();
-    const cityName = city_search.value;
     genWeatherInfo();
 });
 
+// Pull recentSearches from local storage
 const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
 
 function updateRecentSearches() {
@@ -61,8 +61,7 @@ function updateRecentSearches() {
     });
 }
 
-updateRecentSearches();
-
+// If new search isn't in history, add it and update the buttons
 function addToRecentSearches(city) {
     if (!recentSearches.includes(city)) {
         recentSearches.push(city);
@@ -78,6 +77,7 @@ function genWeatherInfo() {
     const coordsApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
     fetch(coordsApiUrl)
+        // When fetching the API, wait for response, THEN check if response is ok
         .then(response => {
             if (response.ok) {
                 success = true;
@@ -86,6 +86,8 @@ function genWeatherInfo() {
                 throw new Error('API request failed');
             }
         })
+
+        // When response check is complete, THEN parse the data received
         .then(data => {
             const iconCode = data.weather[0].icon;
             const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
@@ -113,6 +115,7 @@ function genWeatherInfo() {
 
     fetch(forecastApiUrl)
     .then(response => {
+        // When fetching the API, wait for response, THEN check if response is ok
         if (response.ok) {
             success = true;
             return response.json();
@@ -120,6 +123,8 @@ function genWeatherInfo() {
             throw new Error('API request failed');
         }
     })
+
+        // When response check is complete, THEN parse the data received
         .then(data => {
             const forecastList = data.list;
             const iconUrlArray = [];
@@ -127,6 +132,7 @@ function genWeatherInfo() {
             const windArray = [];
             const humidityArray = [];
 
+            // Forecast is given in 3 hour increments, for-loop goes up by 8 to get daily weather info (3*8=24(one day))
             for (let i = 7; i < forecastList.length; i += 8) {
                 const forecast = forecastList[i];
 
@@ -180,6 +186,7 @@ function genWeatherInfo() {
 }
 
 function init() {
+    updateRecentSearches();
     main.style.display = 'none';
 };
 

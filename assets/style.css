@@ -38,6 +38,7 @@ h1, h2, h3 {
     overflow-x:scroll;
 }
 
+/* Ensure icons display at correct size when in flexbox */
 .icon {
     max-height:60px;
     max-width:60px;
@@ -57,6 +58,7 @@ h1, h2, h3 {
     justify-content: space-around;
 }
 
+/* No right margin for last card so they are evenly spaced in container */
 .five_day_cards:last-child {
     margin-right: 0;
 }
@@ -89,10 +91,10 @@ h1, h2, h3 {
 }
 
 @media screen and (max-width: 1024px) {
+    /* Put search box and recent searches at bottom of page when on smaller screen */
     #screen_container {
         display: flex;
         flex-direction: column-reverse;
-
     }
 
     #main {
