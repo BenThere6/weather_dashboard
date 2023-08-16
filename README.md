@@ -8,7 +8,7 @@ This dashboard presents the current weather and a five-day forecast for whatever
 
 https://benthere6.github.io/weather_dashboard/
 
-![Screenshot](./assets/images/screenshot.png)
+![Screenshot](./assets/images/weather-dashboard-screenshot.png)
 
 ## Acceptance Criteria
 
